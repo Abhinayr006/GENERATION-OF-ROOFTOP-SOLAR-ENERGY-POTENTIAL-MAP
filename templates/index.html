@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Rooftop Solar Estimator{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>☀️ Rooftop Solar Estimator</h1>
+    <p class="subtitle">AI-powered roof segmentation &amp; solar potential analysis</p>
+</div>
+
+<div class="header">
+    <div class="model-selector">
+        <label for="mode-select">🤖 UNet Model: </label>
+        <select id="mode-select">
+            <option value="custom">Custom UNet (Advanced)</option>
+            <option value="basic">Basic UNet (Fast)</option>
+        </select>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card" id="residential-card">
+        <div class="card-icon">🏠</div>
+        <h2>Residential</h2>
+        <p>Single rooftop analysis for homes. Perfect for individual house owners.</p>
+        <div class="card-footer">Quick polygon selection + NASA irradiance data</div>
+    </div>
+    
+    <div class="card" id="corporate-card">
+        <div class="card-icon">🏢</div>
+        <h2>Corporate</h2>
+        <p>Multi-building portfolio analysis. Optimized for commercial rooftops.</p>
+        <div class="card-footer">Higher coverage factor + enterprise config</div>
+    </div>
+</div>
+
+<script>
+    const modeSelect = document.getElementById('mode-select');
+    const resCard = document.getElementById('residential-card');
+    const corpCard = document.getElementById('corporate-card');
+
+    function updateLinks() {
+        const mode = modeSelect.value;
+        resCard.onclick = () => location.href = `/residential?mode=${mode}`;
+        corpCard.onclick = () => location.href = `/corporate?mode=${mode}`;
+        resCard.dataset.mode = mode;
+        corpCard.dataset.mode = mode;
+        document.querySelector('.model-selector select').value = mode;
+    }
+
+    modeSelect.addEventListener('change', updateLinks);
+    updateLinks();
+</script>
+{% endblock %}
