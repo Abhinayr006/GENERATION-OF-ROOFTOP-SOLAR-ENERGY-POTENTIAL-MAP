@@ -28,5 +28,12 @@ coverage.xml
 tags
 .vscode/
 .idea/
-DataSet/
 
+# Models (exclude all trained models)
+*.h5
+*.keras
+*.weights.h5
+*.pt
+*.pth
+*.ckpt
+*.pkl
