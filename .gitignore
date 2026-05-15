@@ -37,3 +37,5 @@ tags
 *.pth
 *.ckpt
 *.pkl
+.tmpenv/
+upload-to-github/
